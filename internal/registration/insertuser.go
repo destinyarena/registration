@@ -5,15 +5,6 @@ import (
 )
 
 func (h *handler) insertUser(u *user) (bool, error) {
-	banned, err := h.isBanned(u.IPHash)
-	if err != nil {
-		return true, err
-	}
-
-	if banned {
-		return true, nil
-	}
-
 	dbuser := &profilestore.User{
 		Discord: u.Discord,
 		Bungie:  u.Bungie,
@@ -21,5 +12,9 @@ func (h *handler) insertUser(u *user) (bool, error) {
 		IPHash:  u.IPHash,
 	}
 
-	return h.ProfileStore.InsertUser(dbuser)
+	if _, err := h.ProfileStore.InsertUser(dbuser); err != nil {
+		return true, nil
+	}
+
+	return false, nil
 }
