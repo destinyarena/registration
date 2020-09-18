@@ -6,6 +6,7 @@ func (h *handler) isBanned(iphash string) (bool, error) {
 		return false, err
 	}
 
+	h.Logger.Infof("Found %d users with this ip hash: %s", len(users), iphash)
 	for _, u := range users {
 		if u.Banned == true {
 			return true, nil

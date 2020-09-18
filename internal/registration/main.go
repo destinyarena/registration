@@ -22,7 +22,7 @@ type (
 )
 
 func (h *handler) Register(g *echo.Group) error {
-	g.POST("/", h.endpoint)
+	g.POST("", h.endpoint)
 	return nil
 }
 
