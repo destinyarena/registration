@@ -7,5 +7,6 @@ func (h *handler) notifyBot(u *user) {
 		ID: u.Discord,
 	}
 
+	h.Logger.Info("Sending user payload to NATS")
 	h.NATSChannels.Registration <- payload
 }

@@ -16,6 +16,7 @@ func (h *handler) endpoint(c echo.Context) error {
 
 	// Validation TBD
 
+	h.Logger.Info("Checking for bad IP's")
 	badip, err := h.badIP(c.RealIP())
 	if err != nil {
 		h.Logger.Error(err)
@@ -28,6 +29,7 @@ func (h *handler) endpoint(c echo.Context) error {
 		return c.String(http.StatusForbidden, err.Error())
 	}
 
+	h.Logger.Info("Starting Alt Detection..")
 	user, err := h.getUser(payload, c.RealIP())
 	if err != nil {
 		h.Logger.Error(err)
@@ -48,6 +50,7 @@ func (h *handler) endpoint(c echo.Context) error {
 	}
 
 	// Alt detection
+
 	alt, err := h.insertUser(user)
 	if err != nil {
 		h.Logger.Error(err)
@@ -60,6 +63,7 @@ func (h *handler) endpoint(c echo.Context) error {
 		return c.String(http.StatusForbidden, err.Error())
 	}
 
+    h.Logger.Info("Notifing discord bot")	
 	h.notifyBot(user)
 
 	return c.String(http.StatusOK, "You have successfully registered")
