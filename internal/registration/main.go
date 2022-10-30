@@ -1,8 +1,8 @@
 package registration
 
 import (
+	"github.com/bwmarrin/discordgo"
 	"github.com/destinyarena/registration/internal/jwtmanager"
-	"github.com/destinyarena/registration/internal/natsmanager"
 	"github.com/destinyarena/registration/internal/profilestore"
 	"github.com/labstack/echo/v4"
 	"github.com/sirupsen/logrus"
@@ -12,8 +12,8 @@ type (
 	handler struct {
 		Logger       *logrus.Logger
 		ProfileStore profilestore.Store
+		DSession     *discordgo.Session
 		JWTManager   jwtmanager.JWTManager
-		NATSChannels *natsmanager.Channels
 	}
 
 	Handler interface {
@@ -26,12 +26,12 @@ func (h *handler) Register(g *echo.Group) error {
 	return nil
 }
 
-func NewDefault(logger *logrus.Logger, jwtmanager jwtmanager.JWTManager, profileStore profilestore.Store, natsChannels *natsmanager.Channels) (Handler, error) {
+func NewDefault(logger *logrus.Logger, jwtmanager jwtmanager.JWTManager, profileStore profilestore.Store, dsession *discordgo.Session) (Handler, error) {
 	h := &handler{
 		Logger:       logger,
 		ProfileStore: profileStore,
 		JWTManager:   jwtmanager,
-		NATSChannels: natsChannels,
+		DSession:     dsession,
 	}
 
 	return h, nil

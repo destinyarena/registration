@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/arturoguerra/go-logging"
+	"github.com/bwmarrin/discordgo"
 	"github.com/destinyarena/registration/internal/jwtmanager"
-	"github.com/destinyarena/registration/internal/natsmanager"
 	"github.com/destinyarena/registration/internal/profilestore"
 	registration "github.com/destinyarena/registration/internal/registration"
 	"github.com/destinyarena/registration/internal/router"
@@ -25,7 +26,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	natsChannels, err := natsmanager.NewDefault(log)
+	dsession, err := discordgo.New("Bot " + os.Getenv("DISCORD_TOKEN"))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,7 +38,7 @@ func main() {
 
 	registerGroup := r.Group("/api/v2/registration", middleware.Logger())
 
-	registrationHandler, err := registration.NewDefault(log, jwtManager, profileStore, natsChannels)
+	registrationHandler, err := registration.NewDefault(log, jwtManager, profileStore, dsession)
 	if err != nil {
 		log.Fatal(err)
 	}

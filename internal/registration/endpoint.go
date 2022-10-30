@@ -24,7 +24,7 @@ func (h *handler) endpoint(c echo.Context) error {
 	}
 
 	if badip {
-		err = errors.New("Looks like you are trying to signup using a VPN, please contact an admin if this is a mistake.")
+		err = errors.New("looks like you are trying to signup using a VPN, please contact an admin if this is a mistake")
 		h.Logger.Error(err)
 		return c.String(http.StatusForbidden, err.Error())
 	}
@@ -44,7 +44,7 @@ func (h *handler) endpoint(c echo.Context) error {
 	}
 
 	if banned {
-		err = errors.New("Sorry looks like you are IP banned if you, please contact an admin if this is a mistake.")
+		err = errors.New("sorry looks like you are IP banned if you, please contact an admin if this is a mistake")
 		h.Logger.Error(err)
 		return c.String(http.StatusForbidden, err.Error())
 	}
@@ -58,13 +58,16 @@ func (h *handler) endpoint(c echo.Context) error {
 	}
 
 	if alt {
-		err = errors.New("Sorry but an account with this information already exists, please contact and admin if this is a mistake.")
+		err = errors.New("sorry but an account with this information already exists, please contact and admin if this is a mistake")
 		h.Logger.Error(err)
 		return c.String(http.StatusForbidden, err.Error())
 	}
 
-    h.Logger.Info("Notifing discord bot")	
-	h.notifyBot(user)
+	h.Logger.Info("Notifing discord bot")
+	if err = h.discordHandler(user); err != nil {
+		h.Logger.Error(err)
+		return c.String(http.StatusInternalServerError, err.Error())
+	}
 
 	return c.String(http.StatusOK, "You have successfully registered")
 }

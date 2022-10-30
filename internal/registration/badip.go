@@ -18,7 +18,7 @@ func (h *handler) badIP(ip string) (bool, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != 200 {
-		return false, fmt.Errorf("Error Code: %d", resp.StatusCode)
+		return false, fmt.Errorf("error code: %d", resp.StatusCode)
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)

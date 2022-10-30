@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/arturoguerra/go-logging v0.0.0-20200217210650-0d44702b7d73
+	github.com/bwmarrin/discordgo v0.26.1
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/golang/protobuf v1.4.2
