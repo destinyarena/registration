@@ -9,7 +9,6 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/golang/protobuf v1.5.2
 	github.com/gorilla/websocket v1.5.0 // indirect
-	github.com/konsorten/go-windows-terminal-sequences v1.0.3 // indirect
 	github.com/labstack/echo/v4 v4.9.1
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/onrik/logrus v0.9.0 // indirect
