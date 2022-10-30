@@ -8,11 +8,10 @@ require (
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/golang/protobuf v1.4.2
-	github.com/labstack/echo/v4 v4.1.17
+	github.com/labstack/echo/v4 v4.9.0
 	github.com/onrik/logrus v0.7.0 // indirect
 	github.com/sirupsen/logrus v1.6.0
 	github.com/tidwall/gjson v1.9.1 // indirect
-	golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e // indirect
 	google.golang.org/grpc v1.31.1
 	google.golang.org/protobuf v1.23.0
 )
