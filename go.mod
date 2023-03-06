@@ -13,7 +13,7 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/onrik/logrus v0.9.0 // indirect
 	github.com/sirupsen/logrus v1.9.0
-	github.com/tidwall/gjson v1.9.1 // indirect
+	github.com/tidwall/gjson v1.9.3 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
 	golang.org/x/crypto v0.1.0 // indirect
 	golang.org/x/time v0.1.0 // indirect
